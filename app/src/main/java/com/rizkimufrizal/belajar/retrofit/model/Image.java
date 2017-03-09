@@ -10,6 +10,15 @@ import java.io.Serializable;
 
 public class Image implements Serializable {
 
+    public Image() {
+    }
+
+    public Image(String url, Integer height, Integer width) {
+        this.url = url;
+        this.height = height;
+        this.width = width;
+    }
+
     @SerializedName("url")
     private String url;
 

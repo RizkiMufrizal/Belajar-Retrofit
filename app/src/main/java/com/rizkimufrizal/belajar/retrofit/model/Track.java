@@ -11,6 +11,13 @@ import java.util.List;
 
 public class Track implements Serializable {
 
+    public Track() {
+    }
+
+    public Track(List<Item> items) {
+        this.items = items;
+    }
+
     @SerializedName("items")
     private List<Item> items;
 

@@ -11,6 +11,15 @@ import java.util.List;
 
 public class Album implements Serializable {
 
+    public Album() {
+    }
+
+    public Album(String name, String albumType, List<Image> images) {
+        this.name = name;
+        this.albumType = albumType;
+        this.images = images;
+    }
+
     @SerializedName("name")
     private String name;
 

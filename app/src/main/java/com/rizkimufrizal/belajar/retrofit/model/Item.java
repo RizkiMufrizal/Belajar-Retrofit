@@ -10,6 +10,14 @@ import java.io.Serializable;
 
 public class Item implements Serializable {
 
+    public Item() {
+    }
+
+    public Item(String name, Album album) {
+        this.name = name;
+        this.album = album;
+    }
+
     @SerializedName("name")
     private String name;
 
