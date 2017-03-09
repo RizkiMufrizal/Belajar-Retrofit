@@ -42,7 +42,7 @@ public class AdapterRowItem extends RecyclerView.Adapter<AdapterRowItem.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-            textView = (TextView) itemView.findViewById(R.id.textview);
+            textView = (TextView) itemView.findViewById(R.id.textView);
             imageView = (ImageView) itemView.findViewById(R.id.imageview);
         }
     }

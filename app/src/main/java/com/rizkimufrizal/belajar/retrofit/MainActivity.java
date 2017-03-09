@@ -2,11 +2,12 @@ package com.rizkimufrizal.belajar.retrofit;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.rizkimufrizal.belajar.retrofit.adapter.AdapterRowItem;
 import com.rizkimufrizal.belajar.retrofit.configuration.RetrofitConfiguration;
+import com.rizkimufrizal.belajar.retrofit.grid.GridMarginDecorationRowItem;
 import com.rizkimufrizal.belajar.retrofit.helper.ConvertEmptyStringToStringPlus;
 import com.rizkimufrizal.belajar.retrofit.model.Item;
 import com.rizkimufrizal.belajar.retrofit.model.response.TrackResponse;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private AdapterRowItem adapterRowItem = new AdapterRowItem();
     private List<Item> itemList = new ArrayList<>();
-    private LinearLayoutManager linearLayoutManager;
+    private GridLayoutManager gridLayoutManager;
     private static final Integer PAGE_SIZE = 10;
     private static Integer currentPage = 1;
 
@@ -34,8 +35,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         recyclerView = (RecyclerView) findViewById(R.id.recycle);
         recyclerView.setAdapter(adapterRowItem);
-        linearLayoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setLayoutManager(linearLayoutManager);
+        gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.addItemDecoration(new GridMarginDecorationRowItem(2, 2, 2, 2));
         recyclerView.addOnScrollListener(recyclerViewOnScrollListener);
         loadItems();
     }
@@ -49,9 +51,9 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
-            Integer visibleItemCount = linearLayoutManager.getChildCount();
-            Integer totalItemCount = linearLayoutManager.getItemCount();
-            Integer firstVisibleItemPosition = linearLayoutManager.findFirstVisibleItemPosition();
+            Integer visibleItemCount = gridLayoutManager.getChildCount();
+            Integer totalItemCount = gridLayoutManager.getItemCount();
+            Integer firstVisibleItemPosition = gridLayoutManager.findFirstVisibleItemPosition();
             if ((visibleItemCount + firstVisibleItemPosition) >= totalItemCount
                     && firstVisibleItemPosition >= 0
                     && totalItemCount >= PAGE_SIZE) {
